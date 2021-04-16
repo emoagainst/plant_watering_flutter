@@ -1,0 +1,44 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Flutter Demo",
+  "homeScreenTitle": "Plants Watering",
+  "createPlantScreenTitle": "Create Plant",
+  "createRoomScreenTitle": "Create Room",
+
+  "emptyFieldValidationError": "Field Can Not Be Empty",
+
+  "plantNameHint":"Plant Name hint",
+  "plantNameLabel":"Plant Name label",
+
+  "plantLocationHint": "Location hint",
+  "plantLocationLabel": "Location label",
+  "plantLocationPrefix": "Home: ",
+
+  "plantDescriptionHint": "Description hint",
+  "plantDescriptionLabel": "Description label",
+
+  "createPlantButtonText": "Create",
+
+  "createPlantFormError": "Form Error",
+
+  "roomNameHint": "Room hint",
+  "roomNameLabel": "Room label",
+
+  "addPlantPhotoChooseSource": "Choose source",
+  "addPlantPhotoOpenCamera": "Open Camera",
+  "addPlantPhotoOpenGallery": "Open Gallery",
+
+  "addPlantPhotoSemanticLabel": "Plant Image",
+  "addPlantPhotoButton": "Add Photo",
+
+  "plantsScreenAddPlant": "Please Add Plant",
+
+  "roomScreenAddRoom": "Add Room",
+
+
+  "navigationItemPlants" : "Plants",
+  "navigationItemCalendar" : "Calendar",
+  "navigationItemRooms" : "Rooms"
+
+}
