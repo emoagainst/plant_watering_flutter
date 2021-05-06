@@ -1,27 +1,36 @@
 import 'package:plant_watering/src/actions/plant_actions.dart';
+import 'package:plant_watering/src/core/routes.dart';
 import 'package:plant_watering/src/data/plant.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:redux/redux.dart';
 
-final plantsReducer = combineReducers<List<PlantData>>([
-  TypedReducer<List<PlantData>, AddPlantAction>(_addPlantReducer),
-  TypedReducer<List<PlantData>, PlantsLoadingSucceededAction>(_plantsLoadedReducer),
+import '../../main.dart';
+
+final plantsStateReducer = combineReducers<PlantsState>([
+  TypedReducer<PlantsState, PlantsLoadingSucceededAction>(plantsLoadingReducer),
+  TypedReducer<PlantsState, PlantsLoadingFailedAction>(plantsLoadingReducer),
+  TypedReducer<PlantsState, AddPlantAction>(_addPlantReducer),
+  TypedReducer<PlantsState, PlantsLoadingSucceededAction>(_plantsLoadedReducer),
 ]);
 
-List<PlantData> _plantsLoadedReducer(List<PlantData> state, PlantsLoadingSucceededAction action) {
-  return action.plants;
+PlantsState _plantsLoadedReducer(PlantsState state, PlantsLoadingSucceededAction action) {
+  return state.copyWith(plants: action.plants);
 }
 
-List<PlantData> _addPlantReducer(List<PlantData> state, AddPlantAction action) {
-  return <PlantData>[]
-    ..addAll(state)
-    ..add(action.plantData);
+PlantsState _addPlantReducer(PlantsState state, AddPlantAction action) {
+  navigatorKey.currentState?.pushNamed(PlantWateringRoutes.addPlantWatering, arguments: action.plantData.id);
+  return state.copyWith(
+      plants: <PlantData>[]
+        ..addAll(state.plants)
+        ..add(action.plantData),
+      createdPlantId: action.plantData.id);
 }
 
-final plantsLoadingReducer = combineReducers<bool>([
-  TypedReducer<bool, PlantsLoadingSucceededAction>(_setLoading),
-  TypedReducer<bool, PlantsLoadingFailedAction>(_setLoading),
+final plantsLoadingReducer = combineReducers<PlantsState>([
+  TypedReducer<PlantsState, PlantsLoadingSucceededAction>(_setLoading),
+  TypedReducer<PlantsState, PlantsLoadingFailedAction>(_setLoading),
 ]);
 
-bool _setLoading(bool state, action) {
-  return false;
+PlantsState _setLoading(PlantsState state, action) {
+  return state.copyWith(plantsLoading: false);
 }

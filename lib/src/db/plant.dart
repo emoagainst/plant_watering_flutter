@@ -7,6 +7,7 @@ const String _columnName = "name";
 const String _columnRoomId = "room_id";
 const String _columnDescription = "description";
 const String _columnPhotoUrl = "photo_url";
+const String tablePlantFk_id = _columnId;
 
 class PlantEntity {
   final int? id;
@@ -53,34 +54,6 @@ class PlantEntity {
       '$_columnPhotoUrl TEXT, '
       '$_columnRoomId INTEGER,'
       'FOREIGN KEY($_columnRoomId) REFERENCES $tableRoom($tableRoomFk_id));';
-  static const String INSERT_PREDEFINED =
-      'INSERT INTO '
-      '$tablePlant ($_columnId, $_columnName, $_columnDescription, $_columnPhotoUrl, $_columnRoomId) '
-      'VALUES '
-      '(null, "plant 1", null, null, null),'
-      '(null, "plant 2", null, null, null),'
-      '(null, "plant 3", null, null, null),'
-      '(null, "plant 4", null, null, null);';
-
-  static const UPDATE_FK_PREDEFINED_0 =
-      'UPDATE $tablePlant '
-      'SET $_columnRoomId = 1 '
-      'WHERE $_columnId = 1; ';
-
-  static const UPDATE_FK_PREDEFINED_1 =
-      'UPDATE $tablePlant '
-      'SET $_columnRoomId = 2 '
-      'WHERE $_columnId = 2; ';
-
-  static const UPDATE_FK_PREDEFINED_2 =
-      'UPDATE $tablePlant '
-      'SET $_columnRoomId = 1 '
-      'WHERE $_columnId = 3; ';
-
-  static const UPDATE_FK_PREDEFINED_3 =
-      'UPDATE $tablePlant '
-      'SET $_columnRoomId = 1 '
-      'WHERE $_columnId = 4; ';
 }
 
 class PlantDao {

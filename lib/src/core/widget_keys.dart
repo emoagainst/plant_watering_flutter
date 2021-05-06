@@ -10,9 +10,12 @@ class PlantWateringKeys {
 
   //Widgets
   static const createPlantButton = Key('__createPlantButton__');
+  static const createPlantWateringButton = Key('__createPlantWateringButton__');
   static const plantNameField = Key('__plantNameField__');
   static const plantLocationField = Key('__plantLocationField__');
   static const plantDescriptionField = Key('__plantDescriptionField__');
+  static const plantWateringPeriodField = Key('__plantWateringPeriodField__');
+  static const plantWateringLastDateField = Key('__plantWateringLastDateField__');
   static const plantPhotoUriText = Key('__plantPhotoUriText__');
 
   static const roomNameField = Key('__roomNameField__');

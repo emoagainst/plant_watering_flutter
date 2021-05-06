@@ -1,16 +1,19 @@
 import 'package:collection/collection.dart';
 import 'package:plant_watering/src/core/navigation.dart';
 import 'package:plant_watering/src/data/plant.dart';
-import 'package:plant_watering/src/data/plant_watering_app.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:plant_watering/src/data/room.dart';
 
-List<PlantData> plantsSelector(AppState state) => state.plants;
+List<PlantData> plantsSelector(PlantsState state) => state.plants;
+PlantData? plantSelector(PlantsState state, int plantId) => state.plants.firstWhereOrNull((element) => element.id == plantId);
 
-bool plantsLoadingSelector(AppState state) => state.plantsLoading;
+bool plantsLoadingSelector(PlantsState state) => state.plantsLoading;
 
-List<RoomData> roomsSelector(AppState state) => state.rooms;
+int createdPlantIdSelector(PlantsState state) => state.createdPlantId;
 
-bool roomsLoadingSelector(AppState state) => state.roomsLoading;
+List<RoomData> roomsSelector(RoomsState state) => state.rooms;
+
+bool roomsLoadingSelector(RoomsState state) => state.roomsLoading;
 
 PlantWateringNavigationItem navigationSelector(AppState state) => state.selectedNavigationItem;
 

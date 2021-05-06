@@ -1,6 +1,6 @@
 import 'package:plant_watering/src/actions/plant_actions.dart';
 import 'package:plant_watering/src/data/plant.dart';
-import 'package:plant_watering/src/data/plant_watering_app.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:plant_watering/src/db/plant.dart';
 import 'package:redux/redux.dart';
 

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:plant_watering/src/core/widget_keys.dart';
 import 'package:plant_watering/src/data/room.dart';
+import 'package:plant_watering/src/data/watering.dart';
 import 'package:plant_watering/src/presentation/add_plant_photo_widget.dart';
 
 import '../data/plant.dart';
@@ -43,7 +44,11 @@ class CreatePlantForm extends StatefulWidget {
   final OnSavePlantCallback onSavePlant;
   final List<RoomData> rooms;
 
-  const CreatePlantForm({Key? key, required this.rooms, required this.onSavePlant}) : super(key: key);
+  const CreatePlantForm({
+    Key? key,
+    required this.rooms,
+    required this.onSavePlant,
+  }) : super(key: key);
 
   @override
   _CreatePlantFormState createState() => _CreatePlantFormState();
@@ -52,6 +57,7 @@ class CreatePlantForm extends StatefulWidget {
 class _CreatePlantFormState extends State<CreatePlantForm> {
   PlantData _plant = PlantData.initial();
   RoomData? _selectedRoom;
+
 
   late FocusNode _name, _location, _description;
 
@@ -86,7 +92,7 @@ class _CreatePlantFormState extends State<CreatePlantForm> {
     _plant.photoUrl = photoUri;
   }
 
-  void _handleCreated() {
+  void _handleSaveRequested() {
     final form = _formKey.currentState!;
     if (!form.validate()) {
       _autoValidateMode = AutovalidateMode.always; // Start validating on every change.
@@ -95,7 +101,6 @@ class _CreatePlantFormState extends State<CreatePlantForm> {
       form.save();
       _plant.room = _selectedRoom;
       widget.onSavePlant(_plant);
-      Navigator.pop(context, _plant);
     }
   }
 
@@ -115,9 +120,8 @@ class _CreatePlantFormState extends State<CreatePlantForm> {
       autovalidateMode: _autoValidateMode,
       child: Scrollbar(
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           children: [
-            sizedBoxSpace,
             Flex(
               direction: Axis.horizontal,
               children: [
@@ -156,11 +160,10 @@ class _CreatePlantFormState extends State<CreatePlantForm> {
                   hint: Text(AppLocalizations.of(context)!.plantLocationHint),
                   value: _selectedRoom,
                   items: widget.rooms
-                      .map((room) =>
-                      DropdownMenuItem<RoomData>(
-                        child: Text(room.name ?? ""),
-                        value: room,
-                      ))
+                      .map((room) => DropdownMenuItem<RoomData>(
+                            child: Text(room.name ?? ""),
+                            value: room,
+                          ))
                       .toList(),
                   onChanged: (value) {
                     setState(() {
@@ -187,14 +190,20 @@ class _CreatePlantFormState extends State<CreatePlantForm> {
               },
             ),
             sizedBoxSpace,
-            Center(
-              child: ElevatedButton(
-                key: PlantWateringKeys.createPlantButton,
-                child: Text(AppLocalizations.of(context)!.createPlantButtonText),
-                onPressed: _handleCreated,
+            Container(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Builder(
+                  builder: (BuildContext context) {
+                    return ElevatedButton(
+                      key: PlantWateringKeys.createPlantButton,
+                      child: Text(AppLocalizations.of(context)!.nextPlantButtonText),
+                      onPressed: _handleSaveRequested,
+                    );
+                  },
+                ),
               ),
             ),
-            sizedBoxSpace,
           ],
         ),
       ),

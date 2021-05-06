@@ -4,9 +4,11 @@
   "appTitle": "Flutter Demo",
   "homeScreenTitle": "Plants Watering",
   "createPlantScreenTitle": "Create Plant",
+  "createPlantWateringScreenTitle": "Add Watering Options",
   "createRoomScreenTitle": "Create Room",
 
   "emptyFieldValidationError": "Field Can Not Be Empty",
+  "numFieldFormatValidationError": "Field Can contains only numbers",
 
   "plantNameHint":"Plant Name hint",
   "plantNameLabel":"Plant Name label",
@@ -18,6 +20,13 @@
   "plantDescriptionHint": "Description hint",
   "plantDescriptionLabel": "Description label",
 
+  "plantWateringPeriodHint": "Watering period hint",
+  "plantWateringPeriodLabel": "Watering period label",
+
+  "plantWateringLastDayHint": "Last Watering were at hint",
+  "plantWateringLastDayLabel": "Last Watering were at label",
+
+  "nextPlantButtonText": "Next",
   "createPlantButtonText": "Create",
 
   "createPlantFormError": "Form Error",

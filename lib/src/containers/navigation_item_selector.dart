@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:plant_watering/src/actions/navigation_actions.dart';
 import 'package:plant_watering/src/core/navigation.dart';
-import 'package:plant_watering/src/data/plant_watering_app.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:plant_watering/src/selectors/selectors.dart';
 import 'package:redux/redux.dart';
 

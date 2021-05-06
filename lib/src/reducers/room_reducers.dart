@@ -1,28 +1,31 @@
 import 'package:plant_watering/src/actions/room_actions.dart';
 import 'package:plant_watering/src/data/room.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:redux/redux.dart';
 
-final roomsReducer = combineReducers<List<RoomData>>([
-  TypedReducer<List<RoomData>, AddRoomAction>(_addRoomReducer),
-  TypedReducer<List<RoomData>, RoomsLoadingSucceededAction>(_roomsLoadedReducer),
+final roomsStateReducer = combineReducers<RoomsState>([
+  TypedReducer<RoomsState, RoomsLoadingSucceededAction>(roomsLoadingReducer),
+  TypedReducer<RoomsState, RoomsLoadingFailedAction>(roomsLoadingReducer),
+  TypedReducer<RoomsState, AddRoomAction>(_addRoomReducer),
+  TypedReducer<RoomsState, RoomsLoadingSucceededAction>(_roomsLoadedReducer),
 ]);
 
-List<RoomData> _roomsLoadedReducer (List<RoomData> state, RoomsLoadingSucceededAction action) {
-  return action.rooms;
+RoomsState _roomsLoadedReducer (RoomsState state, RoomsLoadingSucceededAction action) {
+  return state.copyWith(rooms: action.rooms);
 }
 
-List<RoomData> _addRoomReducer(List<RoomData> state, AddRoomAction action) {
-  return <RoomData>[]
-      ..addAll(state)
-      ..add(action.roomData);
+RoomsState _addRoomReducer(RoomsState state, AddRoomAction action) {
+  return state.copyWith(rooms: <RoomData>[]
+    ..addAll(state.rooms)
+    ..add(action.roomData));
 }
 
-final roomsLoadingReducer = combineReducers<bool>([
-  TypedReducer<bool, RoomsLoadingSucceededAction>(_setLoading),
-  TypedReducer<bool, RoomsLoadingFailedAction>(_setLoading),
+final roomsLoadingReducer = combineReducers<RoomsState>([
+  TypedReducer<RoomsState, RoomsLoadingSucceededAction>(_setLoading),
+  TypedReducer<RoomsState, RoomsLoadingFailedAction>(_setLoading),
 ]);
 
-bool _setLoading(bool state, action){
-  return false;
+RoomsState _setLoading(RoomsState state, action){
+  return state.copyWith(roomsLoading: false);
 }
 

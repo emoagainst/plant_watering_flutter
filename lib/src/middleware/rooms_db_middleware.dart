@@ -1,5 +1,5 @@
 import 'package:plant_watering/src/actions/room_actions.dart';
-import 'package:plant_watering/src/data/plant_watering_app.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:plant_watering/src/data/room.dart';
 import 'package:plant_watering/src/db/room.dart';
 import 'package:redux/redux.dart';

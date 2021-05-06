@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:plant_watering/src/actions/room_actions.dart';
-import 'package:plant_watering/src/data/plant_watering_app.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:plant_watering/src/data/room.dart';
 import 'package:plant_watering/src/presentation/rooms_screen.dart';
 import 'package:plant_watering/src/selectors/selectors.dart';
@@ -34,8 +34,8 @@ class _ViewModel {
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
-        roomsWithPlants: roomWithPlantsSelector(roomsSelector(store.state), plantsSelector(store.state)),
-        isLoading: roomsLoadingSelector(store.state),
+        roomsWithPlants: roomWithPlantsSelector(roomsSelector(store.state.roomsState), plantsSelector(store.state.plantsState)),
+        isLoading: roomsLoadingSelector(store.state.roomsState),
         onInit: () {
           store.dispatch(RoomsLoadingRequestedAction());
         });

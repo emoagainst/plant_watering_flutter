@@ -31,7 +31,7 @@ class RoomEntity {
   }
 
   static const String CREATE_TABLE = 'CREATE TABLE $tableRoom ($_columnId INTEGER PRIMARY KEY AUTOINCREMENT, $_columnName TEXT);';
-  static const String INSERT_PREDEFINED = 'INSERT INTO $tableRoom ($_columnId, $_columnName) VALUES (null, "Balcony"), (null, "Room 1");';
+  static const String INSERT_PREDEFINED = 'INSERT INTO $tableRoom ($_columnId, $_columnName) VALUES (null, "Main Room"), (null, "Kitchen"), (null, "Hall"), (null, "Bathroom");';
 }
 
 class RoomDao {

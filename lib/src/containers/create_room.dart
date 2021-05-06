@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:plant_watering/src/actions/room_actions.dart';
-import 'package:plant_watering/src/data/plant_watering_app.dart';
+import 'package:plant_watering/src/data/states.dart';
 import 'package:plant_watering/src/data/room.dart';
 import 'package:plant_watering/src/presentation/create_room_widget.dart';
 import 'package:redux/redux.dart';
